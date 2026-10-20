@@ -1,0 +1,27 @@
+# pico_lsm6ds3_ros2 driver. The values here are the defaults, for overriding; README.md
+# describes every parameter. device, frame_id and stationary_source come from the launch
+# arguments.
+pico_lsm6ds3_driver:
+  ros__parameters:
+    # Firmware configuration (src/config.h): IMU_AVERAGE_N, IMU_GY_FS (500 dps), IMU_XL_FS (4 g)
+    samples_per_report: 8
+    gyro_sensitivity_mdps: 17.5
+    accel_sensitivity_mg: 0.122
+    # Noise at rest, per report: ros2 run pico_lsm6ds3_ros2 measure_noise (README, Covariance)
+    angular_velocity_variance: [3.2e-06, 1.0e-05, 2.7e-06]
+    linear_acceleration_variance: [1.6e-04, 1.2e-04, 1.2e-04]
+    # Gyro bias
+    bias_init_duration: 2.5
+    bias_init_timeout: 10.0
+    bias_time_constant: 10.0
+    stationary_window: 1.0
+    stationary_gyro_std: 0.01
+    stationary_accel_std: 0.05
+    stationary_gyro_mean: 0.01
+    odom_topic: /omni_wheel_drive_controller/odom
+    odom_linear_threshold: 0.005
+    odom_angular_threshold: 0.01
+    odom_hold_time: 1.0
+    # Time mapping
+    time_sync_window: 5.0
+    time_sync_drift_window: 60.0

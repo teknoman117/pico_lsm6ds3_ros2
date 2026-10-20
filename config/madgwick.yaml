@@ -1,0 +1,22 @@
+# imu_filter_madgwick: orientation from gyro + accelerometer, no magnetometer.
+# imu.launch.py sets publish_tf and fixed_frame from its arguments.
+imu_filter:
+  ros__parameters:
+    use_mag: false
+    world_frame: enu          # REP 103: x east (here: the start heading), z up
+    # Accelerometer correction rate, rad/s. Madgwick's beta: the accelerometer pulls roll and
+    # pitch toward gravity at about this rate. The default 0.1 lets a robot's own acceleration
+    # (0.5 m/s^2 reads as a ~3 deg tilt) leak into roll/pitch; the gyro is good (bias removed by
+    # the driver, noise ~0.002-0.004 rad/s per report), so lean on it. 0.02 still corrects a
+    # 1 deg error in about a second. Yaw has no reference without a magnetometer: the gain does
+    # not affect it, it is the integrated (bias-corrected) gyro.
+    gain: 0.02
+    zeta: 0.0                 # gyro bias drift gain: off, the driver removes the bias
+    remove_gravity_vector: false
+    constant_dt: 0.0          # 0: dt from the message stamps (the driver's are Pico-clock smooth)
+    stateless: false
+    publish_debug_topics: false
+    reverse_tf: false
+    # Orientation covariance (all three axes; the filter has one value). Roll/pitch are good to
+    # ~0.01 rad at rest; yaw drifts without bound and only its rate should be fused downstream.
+    orientation_stddev: 0.01

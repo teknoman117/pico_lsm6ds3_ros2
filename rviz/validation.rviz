@@ -1,0 +1,102 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+    Help Height: 0
+    Property Tree Widget:
+      Expanded: ~
+      Splitter Ratio: 0.5
+  - Class: rviz_common/Views
+    Name: Views
+    Expanded:
+      - /Current View1
+    Splitter Ratio: 0.5
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid (world, 0.1 m)
+      Enabled: true
+      Cell Size: 0.1
+      Plane Cell Count: 20
+      Reference Frame: world
+      Color: 160; 160; 164
+      Alpha: 0.5
+      Value: true
+    # The fused orientation as TF: Madgwick's odom -> imu_link (publish_tf), under the static
+    # world -> odom. Red x, green y, blue z.
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+      Show Names: true
+      Show Axes: true
+      Show Arrows: true
+      Marker Scale: 1.5
+      Update Interval: 0
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+      Value: true
+    # The same orientation straight from imu/data (rviz_imu_plugin): a box and axes, placed at
+    # imu_link, plus the measured acceleration vector (gravity, pointing up at rest).
+    - Class: rviz_imu_plugin/Imu
+      Name: Imu (imu/data)
+      Enabled: true
+      Topic:
+        Value: /imu/data
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+      Box properties:
+        Enable box: true
+        Box alpha: 0.6
+        Box color: 255; 170; 0
+      Axes properties:
+        Enable axes: true
+        Axes scale: 0.3
+      Acceleration properties:
+        Enable acceleration: true
+        Derotate acceleration: true
+        Acc. vector scale: 0.03
+        Acc. vector alpha: 1
+        Acc. vector color: 255; 0; 255
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: world
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/FocusCamera
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Name: Current View
+      Distance: 1.2
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0
+      Pitch: 0.45
+      Yaw: 0.8
+      Near Clip Distance: 0.01
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 800
+  Width: 1200
+  Hide Left Dock: false
+  Hide Right Dock: true
+  Views:
+    collapsed: true

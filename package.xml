@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>pico_lsm6ds3_ros2</name>
+  <version>0.1.0</version>
+  <description>Driver for the Raspberry Pi Pico + LSM6DS3 USB HID IMU (pico-lsm6ds3-hid firmware, read through evdev): sensor_msgs/Imu with Pico-clock timestamps and gyro bias removal, Madgwick orientation fusion (gyro + accelerometer) and an RViz validation launch</description>
+  <maintainer email="git@nrlewis.dev">Nathan Lewis</maintainer>
+  <license>Apache-2.0</license>
+  <url type="repository">https://github.com/teknoman117/pico_lsm6ds3_ros2</url>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>builtin_interfaces</exec_depend>
+  <exec_depend>rcl_interfaces</exec_depend>
+  <exec_depend>diagnostic_msgs</exec_depend>
+  <exec_depend>diagnostic_updater</exec_depend>
+  <exec_depend>python3-evdev</exec_depend>
+  <!-- imu.launch.py: orientation fusion -->
+  <exec_depend>imu_filter_madgwick</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <!-- validation.launch.py -->
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>rviz_default_plugins</exec_depend>
+  <exec_depend>rviz_imu_plugin</exec_depend>
+
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
