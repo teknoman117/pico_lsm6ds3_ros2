@@ -127,7 +127,9 @@ starts from that file's values, and its arguments then override `device`, `frame
 
 ### Gyro bias and stationary detection
 
-The LSM6DS3's zero-rate offset is large: one unit reads −8.5 °/s on Y. Left uncorrected, that
+The LSM6DS3's zero-rate offset is large, and it changes at every power-up. One unit read
+(+1.48, −8.52, +0.16) °/s on X/Y/Z, then (+1.32, −6.99, +4.87) °/s after being plugged in
+again. Left uncorrected, that
 would make the fused orientation spin. Madgwick without a magnetometer has nothing to correct
 yaw with, so the driver removes the bias itself:
 
